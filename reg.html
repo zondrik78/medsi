@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Медси</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+	<header>
+		
+		<div class="logo">
+			<a href="index.html">
+				<img src="img/logo.png" alt="logo">
+			</a>
+		</div>
+
+		<div class="menu">
+
+		<a href="uslugi.html">Услуги</a>
+		<a href="doctors.html">Врачи</a>
+		<a href="lk.html">Личный кабинет</a>
+		<a href="vhod.html">Вход</a>
+
+		<a href="reg.html" style="background-color: #fff; padding: 20px; border-radius: 100px;">Регистрация</a>
+		</div>
+
+
+
+	</header>
+
+<main>
+
+		<div class="mobilemenu">
+			
+			<a href="index.html" class="shapka">
+				<img src="img/logo.png">			
+				<h3>Клиника "Медси"</h3>
+			</a>
+
+			<input type="checkbox" id="burger" style="display: none;">
+    		<label for="burger"></label>
+    		<nav>
+    		    <ul>
+    		        <li><a href="uslugi.html">Услуги</a></li>
+   		 		    <li><a href="doctors.html">Врачи</a></li>
+    		        <li><a href="lk.html">Личный кабинет</a></li>
+    		        <li><a href="vhod.html">Вход</a></li>
+    		        <li><a href="reg.html">Регистрация</a></li>
+    		    </ul>
+    		</nav>	
+
+		</div>
+        <div style="height: 60px;"></div>
+        <div class="zayavka-header">
+        <div style="height: 20px;"></div>
+        <a href="index.html" class="back">Вернуться</a>
+        <div style="height: 20px;"></div>
+        <p style="font-size: 48px;">Вход</p>
+        <div style="height: 20px;"></div>
+    
+        
+
+        <div class="zayavka">
+        <form action="aut.php" method="POST">
+            
+            <label for="username">Логин:</label>
+            <input type="tel" id="username" name="username" required>
+        
+            <label for="password">Пароль</label>
+            <input type="tel" id="password" name="password" required>
+        
+            <input type="submit" value="Вход">
+            <div class="register-link">
+                <p>Нет аккаунта? <a href="vhodd.html">Зарегистрироваться</a></p>
+            </div>
+        </form>               
+        </div>
+
+
+ 
+
+<div style="padding: 30px;"></div>
+
+
+	</main>
+
+<footer>
+    <div class="column">
+        <ul>
+            <li><a href="#">Услуги</a></li>
+            <li><a href="#">Врачи</a></li>
+            <li><a href="#">Личный кабинет</a></li>
+            
+        </ul>
+    </div>
+    <div class="column">
+        <div class="icon-text">
+            <div>
+                <img src="img/map.png" alt="Иконка 1">
+                <p>Барнаул, Ленина 228А</p>
+            </div>
+            <div>
+                <img src="img/phone.png" alt="Иконка 2">
+                <p>+7-999-999-99-99</p>
+            </div>
+            <div>
+                <img src="img/mail.png" alt="Иконка 3">
+                <p>medsi78@mail.ru</p>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <a href="#">
+            <img src="img/docx.png" alt="Иконка ссылки">
+            Скачать прайс
+        </a>
+        <br><br>
+        <a href="#">Задать вопрос</a>
+    </div>
+</footer>
+
+
+</body>
+</html>
+
+<?php
+require_once('connect.php');
+if (!empty($_REQUEST['username'])&& !empty($_REQUEST['password'])){
+$login = $_POST['username'];
+$$parol = $_POST['password'];
+
+$sql = "SELECT * FROM user where username = '$login'";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+$user=$result->fetch_assoc();
+if (password_verify($parol,$login['password'])){
+
+echo "Добро пожаловать, " . $login['username'] . "!";
+
+}
+else {
+echo "Нет такого пользователя";
+}
+}
+}
+?>

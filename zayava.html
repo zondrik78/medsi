@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Медси</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- Подключение сброса стилей -->
+     <link rel="stylesheet" href="reset.css" />
+
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+	<header>
+		
+		<div class="logo">
+			<a href="index.html">
+				<img src="img/logo.png" alt="logo">
+			</a>
+		</div>
+
+		<div class="menu">
+
+		<a href="uslugi.html">Услуги</a>
+		<a href="doctors.html">Врачи</a>
+		<a href="zayava.html">Заявка</a>
+		<a href="lk.html">Личный кабинет</a>
+
+		<a href="reg.html" style="background-color: #fff; padding: 20px; border-radius: 100px;">Вход</a>
+		</div>
+
+
+
+	</header>
+
+
+
+	<main>
+
+		<div class="mobilemenu">
+			
+			<a href="index.html" class="shapka">
+				<img src="img/logo.png">			
+				<h3>Клиника "Медси"</h3>
+			</a>
+
+			<input type="checkbox" id="burger" style="display: none;">
+    		<label for="burger"></label>
+    		<nav>
+    		    <ul>
+    		        <li><a href="uslugi.html">Услуги</a></li>
+   		 		    <li><a href="doctors.html">Врачи</a></li>
+    		        <li><a href="lk.html">Заявка</a></li>
+    		        <li><a href="contacts.html">Личный кабинет</a></li>
+    		        <li><a href="reg.html">Вход</a></li>
+    		    </ul>
+    		</nav>	
+
+		</div>
+    </div>
+    <div style="height: 60px;"></div>
+    <div class="zayavka-header">
+    <div style="height: 20px;"></div>
+    <a href="index.html" class="back">Вернуться</a>
+    <div style="height: 20px;"></div>
+    <p style="font-size: 48px;">Заявка</p>
+    <div style="height: 20px;"></div>
+    
+
+
+    <div class="zayavka">
+        <form action="zayava.php" method="post">
+            <div>
+                <label for="fullname">ФИО:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div>
+                <label for="email">email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div>
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+
+
+<footer>
+<div class="column">
+    <ul>
+        <li><a href="#">Услуги</a></li>
+        <li><a href="#">Врачи</a></li>
+        <li><a href="#">Личный кабинет</a></li>
+        
+    </ul>
+</div>
+<div class="column">
+    <div class="icon-text">
+        <div>
+            <img src="img/map.png" alt="Иконка 1">
+            <p>Барнаул, Ленина 228А</p>
+        </div>
+        <div>
+            <img src="img/phone.png" alt="Иконка 2">
+            <p>+7-999-999-99-99</p>
+        </div>
+        <div>
+            <img src="img/mail.png" alt="Иконка 3">
+            <p>medsi78@mail.ru</p>
+        </div>
+    </div>
+</div>
+<div class="column">
+    <a href="#">
+        <img src="img/docx.png" alt="Иконка ссылки">
+        Скачать прайс
+    </a>
+    <br><br>
+    <a href="#">Задать вопрос</a>
+</div>
+</footer>
+
+
+</body>
+
+</html>
+
+<?php 
+require_once('connect.php');
+$fullname = $_POST['fullname'];
+$email = $_POST['email'];
+    $sql = "INSERT INTO zayava (fullname, email) VALUES ('$fullname', '$email')";
+    if ($db -> query($sql) === TRUE) {
+        echo "Заявка отправлена";
+    } else {
+        echo "Ошибка: " . $db->error;}
+?>
